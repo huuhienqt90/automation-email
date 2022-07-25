@@ -1,3 +1,4 @@
+[![Automation Email](https://github.com/huuhienqt90/automation-email/actions/workflows/automation-email.yml/badge.svg?branch=main)](https://github.com/huuhienqt90/automation-email/actions/workflows/automation-email.yml)
 # Automation Emails with Laravel 9
 Features
  - Manage Companies
