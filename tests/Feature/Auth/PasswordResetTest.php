@@ -5,18 +5,30 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
+    use WithFaker;
 
     public function test_reset_password_link_screen_can_be_rendered()
     {
         $response = $this->get('/forgot-password');
 
         $response->assertStatus(200);
+    }
+
+    public function test_can_not_reset_password()
+    {
+        $response = $this->post(route('password.email'), [
+            'email' => $this->faker->safeEmail()
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors();
     }
 
     public function test_reset_password_link_can_be_requested()
@@ -64,6 +76,28 @@ class PasswordResetTest extends TestCase
             ]);
 
             $response->assertSessionHasNoErrors();
+
+            return true;
+        });
+    }
+
+    public function test_set_new_password()
+    {
+        Notification::fake();
+
+        $user = User::factory()->create();
+
+        $this->post('/forgot-password', ['email' => $user->email]);
+
+        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
+            $response = $this->post('/reset-password', [
+                'token' => $notification->token,
+                'email' => $this->faker->safeEmail(),
+                'password' => 'password',
+                'password_confirmation' => 'password',
+            ]);
+
+            $response->assertSessionHasErrors();
 
             return true;
         });
