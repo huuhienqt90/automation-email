@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('job_title')->nullable();
             $table->string('last_campaign')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

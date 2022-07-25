@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -50,7 +51,8 @@ class CompanyTest extends TestCase
             ->post(route('companies.store'), [
                 'name' => 'Company test',
                 'slug' => 'company-test',
-                'email' => 'company@company.com'
+                'email' => 'company@company.com',
+                'logo' => UploadedFile::fake()->image('logo.jpg'),
             ]);
         $response->assertRedirect(route('companies.index'))
             ->assertSessionHas('success', 'Create company success.');
@@ -90,7 +92,8 @@ class CompanyTest extends TestCase
             ->put(route('companies.update', $company), [
                 'name' => $name = $company->name . ' updated',
                 'slug' => $company->slug,
-                'email' => $company->email
+                'email' => $company->email,
+                'logo' => UploadedFile::fake()->image('logo.jpg'),
             ])
             ->assertRedirect(route('companies.index'))
             ->assertSessionHas('success', 'Update company success.');
