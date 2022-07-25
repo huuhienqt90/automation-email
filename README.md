@@ -10,10 +10,10 @@ Features
  - [x] Create a company
  - [x] Update a company
  - [x] Delete a company
- - [ ] Get list contacts
- - [ ] Create a contact
- - [ ] Update a contact
- - [ ] Delete a contact
+ - [x] Get list contacts
+ - [x] Create a contact
+ - [x] Update a contact
+ - [x] Delete a contact
  - [ ] Get list campaigns
  - [ ] Create a campaign
  - [ ] Update a campaign
