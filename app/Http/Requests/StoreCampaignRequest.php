@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreCampaignRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class StoreCampaignRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +26,15 @@ class StoreCampaignRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => ['nullable', 'exists:users,id'],
+            'name' => ['required', 'string'],
+            'slug' => ['required', 'unique:campaigns,slug'],
+            'status' => ['nullable', new Enum(Status::class)],
+            'is_private' => ['nullable'],
+            'sent_count' => ['nullable'],
+            'fail_count' => ['nullable'],
+            'open_count' => ['nullable'],
+            'reply_count' => ['nullable']
         ];
     }
 }

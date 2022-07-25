@@ -31,6 +31,14 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
+    public function test_redirect_to_dashboard_if_logged()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('/login');
+        $this->assertAuthenticated();
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
     public function test_users_can_not_authenticate_with_invalid_password()
     {
         $user = User::factory()->create();
@@ -42,4 +50,37 @@ class AuthenticationTest extends TestCase
 
         $this->assertGuest();
     }
+
+    public function test_login_with_rate_limit()
+    {
+        $user = User::factory()->create();
+        foreach (range(0, 6) as $_) {
+            $response = $this->post('/login', [
+                'email' => $user->email,
+                'password' => 'wrong-password',
+            ]);
+        }
+
+        $response->assertStatus(302);
+    }
+
+    public function test_can_logout()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->post(route('logout'));
+
+        $this->assertGuest();
+    }
+
+    public function testRateLimit()
+    {
+        $user = User::factory()->create();
+        foreach (range(0, 65) as $_) {
+            $response = $this->actingAs($user)->get('/api/user');
+        }
+        $response->assertStatus(429)
+            ->assertSee('Too Many Requests');
+    }
+
 }

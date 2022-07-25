@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use App\Models\Company;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -34,7 +35,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Contact/Create');
+        $companies = Company::all();
+        return Inertia::render('Contact/Create', compact('companies'));
     }
 
     /**
@@ -58,7 +60,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return Inertia::render('Contact/Edit', compact('contact'));
+        $companies = Company::all();
+        return Inertia::render('Contact/Edit', compact('contact', 'companies'));
     }
 
     /**

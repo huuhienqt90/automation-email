@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Application;
@@ -34,3 +35,4 @@ require __DIR__.'/auth.php';
 
 Route::resource('companies', CompanyController::class);
 Route::resource('contacts', ContactController::class);
+Route::resource('campaigns', CampaignController::class);
