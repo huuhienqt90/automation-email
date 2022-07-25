@@ -21,3 +21,6 @@ Features
  - [ ] Set up send email feature
  - [ ] Get campaign's report by open count
  - [ ] Get campaign's report by reply count
+
+## Contributors
+![GitHub Contributors Image](https://contrib.rocks/image?repo=huuhienqt90/automation-email)

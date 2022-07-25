@@ -37,4 +37,5 @@ jobs:
           XDEBUG_MODE: coverage
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         run: php artisan test --coverage
