@@ -6,6 +6,7 @@ import BreezeFileInput from "@/Components/FileInput.vue";
 import BreezeInputError from "@/Components/InputError.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeButton from "@/Components/Button.vue";
+import CampaignNavigation from "@/Components/CampaignNavigation.vue";
 
 const props = defineProps({
     campaign: Object,
@@ -34,6 +35,7 @@ const submit = () => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
+                    <CampaignNavigation :campaign="campaign" />
                     <div class="overflow-x-auto relative">
                         <form @submit.prevent="submit">
                             <div class="mb-4">
