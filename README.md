@@ -5,6 +5,9 @@ Features
  - Manage Contacts
  - Manage Campaigns
 
+[![Campaign Dashboard](https://raw.githubusercontent.com/huuhienqt90/automation-email/main/public/assets/images/campaign-dashboard.png)](https://raw.githubusercontent.com/huuhienqt90/automation-email/main/public/assets/images/campaign-dashboard.png)
+[![Automation Email](https://raw.githubusercontent.com/huuhienqt90/automation-email/main/public/assets/images/company-list.png)](https://raw.githubusercontent.com/huuhienqt90/automation-email/main/public/assets/images/company-list.png)
+
 ### Todo
  - [x] Get list companies
  - [x] Create a company
@@ -14,10 +17,10 @@ Features
  - [x] Create a contact
  - [x] Update a contact
  - [x] Delete a contact
- - [ ] Get list campaigns
- - [ ] Create a campaign
+ - [x] Get list campaigns
+ - [x] Create a campaign
  - [ ] Update a campaign
- - [ ] Delete a campaign
+ - [x] Delete a campaign
  - [ ] Set up send email feature
  - [ ] Get campaign's report by open count
  - [ ] Get campaign's report by reply count

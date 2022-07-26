@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name');
+            $table->string('subject')->nullable();
             $table->string('slug')->unique();
+            $table->longText('description')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('send_type')->default(1);
+            $table->string('send_values')->nullable();
             $table->boolean('is_private')->default(true);
             $table->integer('sent_count')->default(0);
             $table->integer('fail_count')->default(0);

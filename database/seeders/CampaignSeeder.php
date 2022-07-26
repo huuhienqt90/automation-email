@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campaign;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class CampaignSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Campaign::factory(100)->create();
     }
 }

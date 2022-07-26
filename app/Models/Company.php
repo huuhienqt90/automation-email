@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Status;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class Company extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $fillable = [
         'name',
@@ -30,6 +32,20 @@ class Company extends Model
     protected $appends = [
         'logo_url'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function getLogoUrlAttribute()
     {
