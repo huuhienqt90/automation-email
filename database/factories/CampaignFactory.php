@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\CampaignType;
 use App\Enums\Status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +22,11 @@ class CampaignFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => $this->faker->words(4, true),
+            'subject' => $this->faker->words(4, true),
             'slug' => $this->faker->unique()->slug(),
+            'description' => $this->faker->paragraph(),
+            'send_type' => CampaignType::All,
+            'send_values' => null,
             'status' => Status::Activated,
             'is_private' => false,
             'sent_count' => 0,
