@@ -35,4 +35,12 @@ require __DIR__.'/auth.php';
 
 Route::resource('companies', CompanyController::class);
 Route::resource('contacts', ContactController::class);
+Route::get('campaigns/{campaign}/dashboard', [CampaignController::class, 'getDashboard'])
+    ->name('campaigns.dashboard');
+Route::get('campaigns/{campaign}/templates', [CampaignController::class, 'getTemplates'])
+    ->name('campaigns.templates');
+Route::get('campaigns/{campaign}/schedules', [CampaignController::class, 'getSchedules'])
+    ->name('campaigns.schedules');
+Route::get('campaigns/{campaign}/settings', [CampaignController::class, 'getSettings'])
+    ->name('campaigns.settings');
 Route::resource('campaigns', CampaignController::class);

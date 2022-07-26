@@ -63,6 +63,50 @@ class CampaignController extends Controller
     }
 
     /**
+     * Show the template page
+     *
+     * @param Campaign $campaign
+     * @return Response
+     */
+    public function getDashboard(Campaign $campaign)
+    {
+        return Inertia::render('Campaign/Dashboard', compact('campaign'));
+    }
+
+    /**
+     * Show the template page
+     *
+     * @param Campaign $campaign
+     * @return Response
+     */
+    public function getTemplates(Campaign $campaign)
+    {
+        return Inertia::render('Campaign/Template', compact('campaign'));
+    }
+
+    /**
+     * Show the schedule page
+     *
+     * @param Campaign $campaign
+     * @return Response
+     */
+    public function getSchedules(Campaign $campaign)
+    {
+        return Inertia::render('Campaign/Schedule', compact('campaign'));
+    }
+
+    /**
+     * Show the schedule page
+     *
+     * @param Campaign $campaign
+     * @return Response
+     */
+    public function getSettings(Campaign $campaign)
+    {
+        return Inertia::render('Campaign/Setting', compact('campaign'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param UpdateCampaignRequest $request

@@ -45,7 +45,7 @@ const onDelete = (campaign) => {
                             <tbody>
                                 <tr v-for="campaign in campaigns.data" :key="`campaign-${campaign.id}`" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="py-4 px-6">#{{ campaign.id }}</td>
-                                    <td class="py-4 px-6 font-bold">{{ campaign.name }}</td>
+                                    <td class="py-4 px-6 font-bold"><Link :href="route('campaigns.dashboard', campaign)" class="inline-block">{{ campaign.name }}</Link></td>
                                     <td class="py-4 px-6">{{ campaign.slug }}</td>
                                     <td class="py-4 px-6">{{ campaign.is_private }}</td>
                                     <td class="py-4 px-6 text-right">

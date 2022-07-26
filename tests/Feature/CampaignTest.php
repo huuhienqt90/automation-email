@@ -43,6 +43,50 @@ class CampaignTest extends TestCase
                 ->component('Campaign/Create'));
     }
 
+    public function testCanGetDashboardPage()
+    {
+        $user = User::factory()->create();
+        $campaign = Campaign::factory()->create();
+        $this->actingAs($user)
+            ->get(route('campaigns.dashboard', $campaign))
+            ->assertStatus(200)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Campaign/Dashboard'));
+    }
+
+    public function testCanGetTemplatePage()
+    {
+        $user = User::factory()->create();
+        $campaign = Campaign::factory()->create();
+        $this->actingAs($user)
+            ->get(route('campaigns.templates', $campaign))
+            ->assertStatus(200)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Campaign/Template'));
+    }
+
+    public function testCanGetSchedulePage()
+    {
+        $user = User::factory()->create();
+        $campaign = Campaign::factory()->create();
+        $this->actingAs($user)
+            ->get(route('campaigns.schedules', $campaign))
+            ->assertStatus(200)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Campaign/Schedule'));
+    }
+
+    public function testCanGetSettingPage()
+    {
+        $user = User::factory()->create();
+        $campaign = Campaign::factory()->create();
+        $this->actingAs($user)
+            ->get(route('campaigns.settings', $campaign))
+            ->assertStatus(200)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Campaign/Setting'));
+    }
+
     public function testCanCreateCampaign()
     {
         $user = User::factory()->create();
