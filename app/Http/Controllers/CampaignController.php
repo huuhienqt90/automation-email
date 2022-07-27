@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Models\Campaign;
+use App\Models\Company;
+use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -81,7 +84,16 @@ class CampaignController extends Controller
      */
     public function getTemplates(Campaign $campaign)
     {
-        return Inertia::render('Campaign/Template', compact('campaign'));
+        $contacts = Contact::all();
+        $companies = Company::all();
+        $jobTitles = DB::table('contacts')
+            ->select(['job_title'])
+            ->distinct()
+            ->get();
+        return Inertia::render(
+            'Campaign/Template',
+            compact('campaign', 'contacts', 'companies', 'jobTitles')
+        );
     }
 
     /**

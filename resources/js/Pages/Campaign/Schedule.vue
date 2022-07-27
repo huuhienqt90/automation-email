@@ -34,9 +34,34 @@ const submit = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
+                <div class="bg-white shadow-sm sm:rounded-lg p-4">
                     <CampaignNavigation :campaign="campaign" />
-                    <div class="overflow-x-auto relative"></div>
+                    <div class="relative">
+                        <form @submit.prevent="submit">
+                            <div class="mb-4 relative">
+                                <BreezeLabel for="subject" value="Subject" />
+                                <div class="flex items-center justify-between max-w-2xl">
+                                    <label>
+                                        <input type="radio" v-model="form.type" value="1" />
+                                        <span class="ml-2">Send immediately</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" v-model="form.type" value="2" />
+                                        <span class="ml-2">Send today</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" v-model="form.type" value="3" />
+                                        <span class="ml-2">Custom</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-end mt-4">
+                                <BreezeButton class="ml-4" :class="{ 'opacity-50': form.processing }" :loading="form.processing" :disabled="form.processing">
+                                    Save Changes
+                                </BreezeButton>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
