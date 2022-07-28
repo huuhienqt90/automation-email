@@ -1,12 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import BreezeInput from "@/Components/Input.vue";
-import BreezeFileInput from "@/Components/FileInput.vue";
-import BreezeInputError from "@/Components/InputError.vue";
 import CampaignNavigation from "@/Components/CampaignNavigation.vue";
-import BreezeLabel from "@/Components/Label.vue";
-import BreezeButton from "@/Components/Button.vue";
 
 const props = defineProps({
     campaign: Object,
@@ -42,49 +37,49 @@ const submit = () => {
                     <div class="overflow-x-auto relative flex w-full justify-between">
                         <div class="progress">
                             <h4 class="font-bold text-yellow-400">Sent</h4>
-                            <span class="text-sm text-yellow-400">0/100</span>
+                            <span class="text-sm text-yellow-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-yellow-400 border-r-yellow-400"></div>
+                                <div class="bar border-b-yellow-400 border-r-yellow-400" :style="`transform: rotate(${(45 + (1.8 * 80))}deg);`"></div>
                             </div>
-                            <span>50</span>%
+                            <span>80</span>%
                         </div>
                         <div class="progress">
                             <h4 class="font-bold text-pink-400">Open</h4>
-                            <span class="text-sm text-pink-400">0/100</span>
+                            <span class="text-sm text-pink-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-pink-400 border-r-pink-400"></div>
+                                <div class="bar border-b-pink-400 border-r-pink-400" :style="`transform: rotate(${(45 + (1.8 * 60))}deg);`"></div>
                             </div>
-                            <span>50</span>%
+                            <span>60</span>%
                         </div>
                         <div class="progress">
                             <h4 class="font-bold text-teal-400">Click</h4>
-                            <span class="text-sm text-teal-400">0/100</span>
+                            <span class="text-sm text-teal-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-teal-400 border-r-teal-400"></div>
+                                <div class="bar border-b-teal-400 border-r-teal-400" :style="`transform: rotate(${(45 + (1.8 * 10))}deg);`"></div>
                             </div>
-                            <span>50</span>%
+                            <span>10</span>%
                         </div>
                         <div class="progress">
                             <h4 class="font-bold text-blue-400">Reply</h4>
-                            <span class="text-sm text-blue-400">0/100</span>
+                            <span class="text-sm text-blue-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-blue-400 border-r-blue-400"></div>
+                                <div class="bar border-b-blue-400 border-r-blue-400" :style="`transform: rotate(${(45 + (1.8 * 30))}deg);`"></div>
                             </div>
-                            <span>50</span>%
+                            <span>30</span>%
                         </div>
                         <div class="progress">
                             <h4 class="font-bold text-orange-400">Unsubscribe</h4>
-                            <span class="text-sm text-orange-400">0/100</span>
+                            <span class="text-sm text-orange-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-orange-400 border-r-orange-400"></div>
+                                <div class="bar border-b-orange-400 border-r-orange-400" :style="`transform: rotate(${(45 + (1.8 * 40))}deg);`"></div>
                             </div>
-                            <span>50</span>%
+                            <span>40</span>%
                         </div>
                         <div class="progress">
                             <h4 class="font-bold text-purple-400">Bounce</h4>
-                            <span class="text-sm text-purple-400">0/100</span>
+                            <span class="text-sm text-purple-400">0/{{ campaign.contacts_count }}</span>
                             <div class="barOverflow">
-                                <div class="bar border-b-purple-400 border-r-purple-400"></div>
+                                <div class="bar border-b-purple-400 border-r-purple-400" :style="`transform: rotate(${(45 + (1.8 * 50))}deg);`"></div>
                             </div>
                             <span>50</span>%
                         </div>
@@ -115,6 +110,5 @@ const submit = () => {
     border-radius: 50%;
     border-width: 20px;
     box-sizing: border-box;
-    transform: rotate(180deg);
 }
 </style>

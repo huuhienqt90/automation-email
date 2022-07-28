@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Company;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -73,6 +74,7 @@ class CampaignController extends Controller
      */
     public function getDashboard(Campaign $campaign)
     {
+        $campaign->loadCount(['contacts']);
         return Inertia::render('Campaign/Dashboard', compact('campaign'));
     }
 
@@ -116,6 +118,12 @@ class CampaignController extends Controller
     public function getSettings(Campaign $campaign)
     {
         return Inertia::render('Campaign/Setting', compact('campaign'));
+    }
+
+    public function postSendCampaign(Campaign $campaign)
+    {
+        Artisan::call('campaign:send '.$campaign->id);
+        return redirect()->back();
     }
 
     /**

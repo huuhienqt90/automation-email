@@ -27,6 +27,17 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->timestamps();
         });
+        Schema::create('campaign_contact', function (Blueprint $table) {
+            $table->foreignId('campaign_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('contact_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -36,6 +47,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('campaign_contact');
         Schema::dropIfExists('contacts');
     }
 };
