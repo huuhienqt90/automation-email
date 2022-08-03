@@ -30,6 +30,8 @@ class UpdateCampaignRequest extends FormRequest
             'name' => ['required', 'string'],
             'slug' => ['required', 'unique:campaigns,slug,'.$this->route('campaign')->id],
             'status' => ['nullable', new Enum(Status::class)],
+            'subject' => ['nullable'],
+            'description' => ['nullable'],
             'is_private' => ['nullable'],
             'sent_count' => ['nullable'],
             'fail_count' => ['nullable'],

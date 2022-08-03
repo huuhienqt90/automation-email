@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Models\Campaign;
+use App\Models\Contact;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +13,18 @@ class CampaignNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public Campaign $campaign;
+    public Contact $contact;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Campaign $campaign, Contact $contact)
     {
-        //
+        $this->campaign = $campaign;
+        $this->contact = $contact;
     }
 
     /**
@@ -41,8 +47,10 @@ class CampaignNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject(str_replace(['%first_name%', '%last_name%'], [$this->contact->first_name, $this->contact->last_name], $this->campaign->subject))
+            ->view('mails.campaign', [
+                'campaign' => $this->campaign,
+                'contact' => $this->contact
+            ]);
     }
 }

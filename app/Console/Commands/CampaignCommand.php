@@ -32,7 +32,7 @@ class CampaignCommand extends Command
         $campaign = Campaign::find($this->argument('campaign'));
         if ($campaign->contacts()->count()) {
             foreach ($campaign->contacts as $contact) {
-                $contact->notify(new CampaignNotification());
+                $contact->notify(new CampaignNotification($campaign, $contact));
             }
         }
     }
